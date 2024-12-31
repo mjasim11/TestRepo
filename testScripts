@@ -1,0 +1,34 @@
+package SampleCodes;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Test;
+
+public class StaplesTest {
+  @Test
+  public void login() throws Exception {
+	  
+	  RemoteWebDriver driver = new ChromeDriver();
+	  driver.manage().window().maximize();
+
+	  driver.get("https://www.staples.com/");
+	  driver.manage().timeouts().implicitlyWait(Duration.ofMillis(20));
+	  Thread.sleep(3000);
+
+	  WebElement frame1 = driver.findElement(By.xpath("//iframe[@title='TrustArc Cookie Consent Manager']"));
+	  driver.switchTo().frame(frame1);
+	  driver.findElement(By.className("required")).click();
+	  Thread.sleep(3000);
+	  driver.switchTo().defaultContent();
+	  Thread.sleep(1000);
+	  driver.findElement(By.id("searchInput")).sendKeys("Ergonomic Chairs");
+	  Thread.sleep(1000);
+	    
+	  
+	  
+  }
+}
